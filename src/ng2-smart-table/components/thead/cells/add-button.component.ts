@@ -1,13 +1,13 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef, OnChanges } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { DataSource } from '../../../lib/data-source/data-source';
+import {Grid} from '../../../lib/grid';
+import {DataSource} from '../../../lib/data-source/data-source';
 
 @Component({
   selector: '[ng2-st-add-button]',
   template: `
     <a *ngIf="isActionAdd" href="#" class="ng2-smart-action ng2-smart-action-add-add"
-        [innerHTML]="addNewButtonContent" (click)="onAdd($event)"></a>
+       [innerHTML]="addNewButtonContent | sanitizeHtml" (click)="onAdd($event)"></a>
   `,
 })
 export class AddButtonComponent implements AfterViewInit, OnChanges {

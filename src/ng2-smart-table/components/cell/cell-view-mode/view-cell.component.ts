@@ -1,6 +1,6 @@
-import {Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
+import {Cell} from '../../../lib/data-set/cell';
 
 @Component({
   selector: 'table-cell-view-mode',
@@ -8,7 +8,7 @@ import { Cell } from '../../../lib/data-set/cell';
   template: `
     <div [ngSwitch]="cell.getColumn().type">
         <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
-        <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
+      <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue() | sanitizeHtml"></div>
         <div *ngSwitchDefault>{{ cell.getValue() }}</div>
     </div>
     `,
