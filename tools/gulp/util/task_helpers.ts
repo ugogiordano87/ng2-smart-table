@@ -2,9 +2,8 @@ import * as child_process from 'child_process';
 import * as fs from 'fs';
 import * as gulp from 'gulp';
 import * as path from 'path';
-import { PROJECT_ROOT, DIST_ROOT } from '../constants';
-import { CompilerOptions } from 'typescript';
-import { compileProject } from './ts-compiler';
+import {CompilerOptions} from 'typescript';
+import {compileProject} from './ts-compiler';
 
 /* Those imports lack typings. */
 const gulpClean = require('gulp-clean');
@@ -34,7 +33,10 @@ function _globify(maybeGlob: string, suffix = '**/*') {
 
 /** Creates a task that runs the TypeScript compiler */
 export function tsBuildTask(tsConfigPath: string, extraOptions?: CompilerOptions) {
-  return () => compileProject(tsConfigPath, extraOptions);
+  return (done: any) => {
+    compileProject(tsConfigPath, extraOptions);
+    done();
+  }
 }
 
 
@@ -94,7 +96,7 @@ export function execTask(binPath: string, args: string[], options: ExecTaskOptio
  * from the package. Examples are typescript, ngc and gulp itself.
  */
 export function execNodeTask(packageName: string, executable: string | string[], args?: string[],
-  options: ExecTaskOptions = {}) {
+                             options: ExecTaskOptions = {}) {
   if (!args) {
     args = <string[]>executable;
     executable = undefined;
@@ -115,7 +117,7 @@ export function execNodeTask(packageName: string, executable: string | string[],
 }
 
 /** Triggers a reload when livereload is enabled and a gulp-connect server is running. */
-export function triggerLivereload() {
+export function triggerLiveReload() {
   gulp.src('dist').pipe(gulpConnect.reload());
 }
 
@@ -130,8 +132,7 @@ export function sequenceTask(...args: any[]) {
   };
 }
 
-
 /** Delete files. */
 export function cleanTask(glob: string) {
-  return () => gulp.src(glob, { read: false }).pipe(gulpClean(null));
+  return () => gulp.src(glob, {read: false, allowEmpty: true}).pipe(gulpClean(null));
 }

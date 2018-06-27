@@ -1,4 +1,4 @@
-import { join } from 'path';
+import {join} from 'path';
 
 export const TABLE_VERSION = require('../../src/ng2-smart-table/package.json').version;
 

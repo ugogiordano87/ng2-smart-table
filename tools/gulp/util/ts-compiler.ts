@@ -4,6 +4,7 @@ import chalk from 'chalk';
 
 /** Compiles a TypeScript project with possible extra options. */
 export function compileProject(project: string, options: ts.CompilerOptions) {
+
   const parsed = parseProjectConfig(project, options);
   const program = ts.createProgram(parsed.fileNames, parsed.options);
   const baseDir = program.getCurrentDirectory();

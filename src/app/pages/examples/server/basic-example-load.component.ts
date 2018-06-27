@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { LocalDataSource } from '../../../../ng2-smart-table';
-import { BasicExampleLoadService } from './basic-example-load.service';
+import {LocalDataSource} from '../../../../ng2-smart-table';
+import {BasicExampleLoadService} from './basic-example-load.service';
 
 @Component({
   selector: 'basic-example-load',
@@ -21,8 +21,6 @@ export class BasicExampleLoadComponent {
         editable: false,
         addable: false,
       },
-
-
       name: {
         title: 'Full Name',
       },
