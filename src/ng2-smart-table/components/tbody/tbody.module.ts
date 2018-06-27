@@ -8,7 +8,6 @@ import {Ng2SmartTableTbodyComponent} from './tbody.component';
 import {TbodyCreateCancelComponent} from './cells/create-cancel.component';
 import {TbodyEditDeleteComponent} from './cells/edit-delete.component';
 import {TbodyCustomComponent} from './cells/custom.component';
-import {SanitizeHtmlPipe} from './pipes/sanitize-html.pipe';
 
 const TBODY_COMPONENTS = [
   TbodyCreateCancelComponent,
@@ -25,7 +24,6 @@ const TBODY_COMPONENTS = [
   ],
   declarations: [
     ...TBODY_COMPONENTS,
-    SanitizeHtmlPipe,
   ],
   exports: [
     ...TBODY_COMPONENTS,
